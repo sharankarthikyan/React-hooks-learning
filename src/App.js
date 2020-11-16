@@ -26,18 +26,32 @@ const options = [
 ];
 
 export default () => {
-  // const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState(options[0]);
+
+  const showAccordion = () => {
+    if (window.location.pathname === "/") return <Accordion items={items} />;
+  };
+
+  const showList = () => {
+    if (window.location.pathname === "/list") return <Search />;
+  };
+  const showDropdown = () => {
+    if (window.location.pathname === "/dropdown")
+      return (
+        <Dropdown
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      );
+  };
 
   return (
     <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-      {/*<Accordion items={items} />*/}
-      {/*<Search />*/}
-      {/*<Dropdown*/}
-      {/*  options={options}*/}
-      {/*  selected={selected}*/}
-      {/*  onSelectedChange={setSelected}*/}
-      {/*/>*/}
-      <Translate />
+      {showAccordion()}
+      {showList()}
+      {showDropdown()}
+      {/*<Translate />*/}
     </div>
   );
 };
